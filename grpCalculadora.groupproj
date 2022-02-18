@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{34B14187-5BA9-42BE-BBCA-5DBDBBC1CBB4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="prjCalculadora.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="test\prjCalculadoraTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="prjCalculadora">
+        <MSBuild Projects="prjCalculadora.dproj"/>
+    </Target>
+    <Target Name="prjCalculadora:Clean">
+        <MSBuild Projects="prjCalculadora.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="prjCalculadora:Make">
+        <MSBuild Projects="prjCalculadora.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="prjCalculadoraTests">
+        <MSBuild Projects="test\prjCalculadoraTests.dproj"/>
+    </Target>
+    <Target Name="prjCalculadoraTests:Clean">
+        <MSBuild Projects="test\prjCalculadoraTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="prjCalculadoraTests:Make">
+        <MSBuild Projects="test\prjCalculadoraTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="prjCalculadora;prjCalculadoraTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="prjCalculadora:Clean;prjCalculadoraTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="prjCalculadora:Make;prjCalculadoraTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
